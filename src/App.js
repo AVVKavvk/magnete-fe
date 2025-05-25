@@ -1,24 +1,63 @@
-import logo from './logo.svg';
-import './App.css';
+import { useState } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Students from "./pages/Students";
+import AddStudent from "./pages/AddStudent";
+import EditStudent from "./pages/EditStudent";
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
+  const [accessCode, setAccessCode] = useState("");
+  const [accessGranted, setAccessGranted] = useState(false);
+
+  const allowedCodes = ["AVVKavvk", "AVVK0996", "avvkavvk", "avvk0996"];
+
+  const handleAccessSubmit = (e) => {
+    e.preventDefault();
+    if (allowedCodes.includes(accessCode.trim())) {
+      setAccessGranted(true);
+    } else {
+      alert("Incorrect code");
+    }
+  };
+
+  if (!accessGranted) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-base-200">
+        <form
+          onSubmit={handleAccessSubmit}
+          className="card bg-base-100 p-6 shadow-md"
         >
-          Learn React
-        </a>
-      </header>
-    </div>
+          <h2 className="text-xl font-bold mb-4 text-center">
+            Enter Access Code
+          </h2>
+          <input
+            type="password"
+            className="input input-bordered w-full mb-4"
+            value={accessCode}
+            onChange={(e) => setAccessCode(e.target.value)}
+            placeholder="Enter code"
+          />
+          <button type="submit" className="btn btn-primary w-full">
+            Enter
+          </button>
+        </form>
+      </div>
+    );
+  }
+
+  return (
+    <Router>
+      <Navbar />
+      <div className="p-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/students" element={<Students />} />
+          <Route path="/add" element={<AddStudent />} />
+          <Route path="/edit/:month/:id" element={<EditStudent />} />
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
