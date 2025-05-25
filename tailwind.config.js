@@ -1,13 +1,21 @@
-// tailwind.config.js
+/** @type {import('tailwindcss').Config} */
+const daisyui = require("daisyui");
+
 module.exports = {
-  content: ["./src/**/*.{js,jsx}"],
-  safelist: [
-    "btn",
-    "btn-primary",
-    "btn-success",
-    "btn-error",
-    "btn-warning",
-    "btn-info",
-  ],
-  plugins: [require("daisyui")],
+  content: ["./src/**/*.{js,jsx,ts,tsx}"],
+  theme: {
+    extend: {},
+  },
+  plugins: [daisyui],
+  daisyui: {
+    themes: ["light", "dark"],
+    darkTheme: "dark",
+    base: true,
+    styled: true,
+    utils: true,
+    logs: false,
+    rtl: false,
+    prefix: "",
+    defaultTheme: "light",
+  },
 };
