@@ -5,6 +5,7 @@ import Home from "./pages/Home";
 import Students from "./pages/Students";
 import AddStudent from "./pages/AddStudent";
 import EditStudent from "./pages/EditStudent";
+import MigrateForm from "./components/Mirgrate";
 
 function App() {
   const [accessCode, setAccessCode] = useState("");
@@ -54,6 +55,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/students" element={<Students />} />
           <Route path="/add" element={<AddStudent />} />
+          <Route path="/migrate" element={<MigrateForm />} />
           <Route path="/edit/:month/:id" element={<EditStudent />} />
         </Routes>
       </div>

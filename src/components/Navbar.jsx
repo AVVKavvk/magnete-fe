@@ -34,6 +34,14 @@ const Navbar = () => {
               Add Student
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              to="/migrate"
+              className={({ isActive }) => (isActive ? "active" : "")}
+            >
+              Add Month
+            </NavLink>
+          </li>
         </ul>
       </div>
     </div>

@@ -49,7 +49,7 @@ const StudentCard = ({ student, month }) => {
 
   return (
     <div
-      className={`card bg-base-100 shadow-md p-4 w-full border border-gray-300 rounded-md flex flex-col justify-center items-center ${
+      className={`card  min-w-[300px] md:min-w-[500px] bg-base-100 shadow-md p-4 w-full border border-gray-300 rounded-md flex flex-col justify-center items-center ${
         !active ? "opacity-50" : ""
       }`}
     >
