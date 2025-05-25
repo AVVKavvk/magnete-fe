@@ -1,10 +1,12 @@
 import { create } from "zustand";
 
-const useStore = create((set) => ({
+const useAuthStore = create((set) => ({
   students: [],
+  isAdmin: false,
   total: 0,
   page: 1,
   limit: 10,
+  setAdmin: (isAdmin) => set({ isAdmin }),
   token: localStorage.getItem("token") || "",
   setStudents: (students) => set({ students }),
   setTotal: (total) => set({ total }),
@@ -19,4 +21,4 @@ const useStore = create((set) => ({
   },
 }));
 
-export default useStore;
+export default useAuthStore;

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import StudentCard from "../components/StudentCard";
 import { axiosClient } from "../axiosClient";
+import useAuthStore from "../store/useStore";
 
 const Students = () => {
   const [students, setStudents] = useState([]);
@@ -9,12 +10,15 @@ const Students = () => {
   const [allMonths, setAllMonths] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  const { isAdmin } = useAuthStore();
   const [filters, setFilters] = useState({
     name: "",
     phone: "",
     aadhaar: "",
   });
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   // Get all months
   useEffect(() => {
     const getAllMonths = async () => {
@@ -57,6 +61,13 @@ const Students = () => {
       [name]: value,
     }));
   };
+  if (!isAdmin) {
+    return (
+      <div className="h-screen flex items-center justify-center bg-base-200">
+        You are not an admin
+      </div>
+    );
+  }
 
   return (
     <div className="p-4">

@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { uploadImageToCloudinary } from "../utils/cloudnairy"; // Adjust path if needed
 
 const StudentForm = ({ initialData = {}, onSubmit }) => {
@@ -14,7 +14,9 @@ const StudentForm = ({ initialData = {}, onSubmit }) => {
     is_active: true,
     ...initialData,
   });
-
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
   const [uploadingPhoto, setUploadingPhoto] = useState(false);
   const [uploadingAadhaar, setUploadingAadhaar] = useState(false);
 
@@ -115,20 +117,20 @@ const StudentForm = ({ initialData = {}, onSubmit }) => {
       </div>
 
       {/* Amount Paid */}
-      <label className="label cursor-pointer">
+      <label className="label cursor-pointer bg-gray-900 p-4 rounded-md text-white">
         <span className="label-text">Amount Paid</span>
         <input
           type="checkbox"
           name="amount_paid"
           checked={form.amount_paid}
           onChange={handleChange}
-          className="checkbox"
+          className="checkbox border-2 border-green-300"
         />
       </label>
 
       <button
         type="submit"
-        className="btn btn-primary ml-16"
+        className="btn btn-primary ml-16  shadow-md mx-auto flex item-center justify-center text-center"
         disabled={uploadingPhoto || uploadingAadhaar}
       >
         Save

@@ -6,10 +6,12 @@ import Students from "./pages/Students";
 import AddStudent from "./pages/AddStudent";
 import EditStudent from "./pages/EditStudent";
 import MigrateForm from "./components/Mirgrate";
+import useAuthStore from "./store/useStore";
 
 function App() {
   const [accessCode, setAccessCode] = useState("");
   const [accessGranted, setAccessGranted] = useState(false);
+  const { isAdmin, setAdmin } = useAuthStore();
 
   const allowedCodes = ["AVVKavvk", "AVVK0996", "avvkavvk", "avvk0996"];
 
@@ -17,6 +19,7 @@ function App() {
     e.preventDefault();
     if (allowedCodes.includes(accessCode.trim())) {
       setAccessGranted(true);
+      setAdmin(true);
     } else {
       alert("Incorrect code");
     }
@@ -50,7 +53,7 @@ function App() {
   return (
     <Router>
       <Navbar />
-      <div className="p-4">
+      <div className="p-4 h-screen">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/students" element={<Students />} />
