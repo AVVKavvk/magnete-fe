@@ -1,8 +1,13 @@
-/** @type {import('tailwindcss').Config} */
+// tailwind.config.js
 module.exports = {
   content: ["./src/**/*.{js,jsx}"],
-  theme: {
-    extend: {},
-  },
+  safelist: [
+    "btn",
+    "btn-primary",
+    "btn-success",
+    "btn-error",
+    "btn-warning",
+    "btn-info",
+  ],
   plugins: [require("daisyui")],
 };
